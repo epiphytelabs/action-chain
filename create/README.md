@@ -1,17 +1,17 @@
-# Epiphyte Create Network Action
-This action creates a new Ethereum network via Epiphyte.
+# Epiphyte Create Chain Action
+This action creates a new Ethereum chain via Epiphyte.
 
 ## Inputs
-## `auth`
-**Required** The username:password from your Epiphyte account.
+## `token`
+**Required** The API token from your Epiphyte account.
 ## `accounts`
 The number of accounts to create.
-## `chain`
-The chain id of the Ethereum network.
+## `id`
+The chain id of the Ethereum chain.
 ## `mnemonic`
 The wallet seed to use for account creation.
 ## `name`
-The name of the Epiphyte network.
+The name of the Epiphyte chain.
 
 ## Outputs
 ## `accounts`
@@ -31,18 +31,18 @@ For example:
   }
 ]
 ```
-## `chain`
-The chain id of the Ethereum network.
 ## `hostname`
-The host name of the Epiphyte network.
+The host name of the Epiphyte chain.
+## `id`
+The chain id of the Ethereum chain.
 ## `mnemonic`
 The wallet seed used for account creation.
 ## `name`
-The name of the Epiphyte network.
+The name of the Epiphyte chain.
 
 ## Example Usage
 ```yaml
-uses: epiphytelabs/action-network-create@v0.1
+uses: epiphytelabs/action-chain/create@main
 with:
-  auth: ${{ secrets.EPIPHYTE_AUTH }}
+  token: ${{ secrets.EPIPHYTE_TOKEN }}
 ```

@@ -1,12 +1,11 @@
 // imports
 const core   = require('@actions/core');
-const github = require('@actions/github');
 const axios  = require('axios').default;
 const url    = require('url');
 
 // actual constants
 const EPIPHYTE_API_BASE = 'https://api.epiphyte.run';
-const CREATE_URL = '/chains';
+const OBJECT_URL = '/chains';
 
 function waitFor(millSeconds) {
   return new Promise((resolve, reject) => {
@@ -34,7 +33,7 @@ async function waitForTestNet(hostname) {
         return true;
       }
     } catch (error) {
-      const message = `Waiting for chain (${error.response.status})`
+      const message = `Waiting for chain (${error.message})`
       console.log(message);
     }
     await waitFor(1000);
@@ -44,26 +43,26 @@ async function waitForTestNet(hostname) {
 
 async function main() {
   // parse input
-  const apiKey = core.getInput('api_key');
   let postData = {
     accounts: core.getInput('accounts'),
-    chain: core.getInput('chain'),
+    id: core.getInput('id'),
     mnemonic: core.getInput('mnemonic'),
     name: core.getInput('name')
   };
 
   // configure http agent
+  const token = core.getInput('token');
   const epiphyte = axios.create({
     baseURL: EPIPHYTE_API_BASE,
     headers: {
-      'Authorization': `Bearer ${apiKey}`
+      'Authorization': `Bearer ${token}`
     }
   });
 
   // attempt create network request
   try {
     const params = new url.URLSearchParams(postData);
-    const result = await epiphyte.post(CREATE_URL, params.toString());
+    const result = await epiphyte.post(OBJECT_URL, params.toString());
 
     if (result.status == 200) {
       // set output on success
@@ -72,15 +71,14 @@ async function main() {
       core.info(`Waiting for chain`);
       const testNetUp = await waitForTestNet(data.hostname);
       if (testNetUp) {
-        core.info(`Testnet up`);
+        core.info(`Chain up`);
         core.setOutput('accounts', data.accounts);
-        core.setOutput('chain',    data.chain);
         core.setOutput('hostname', data.hostname);
         core.setOutput('id',       data.id);
         core.setOutput('mnemonic', data.mnemonic);
         core.setOutput('name',     data.name);
       } else {
-        const message = "Testnet failed to boot";
+        const message = "Chain failed to boot";
         console.log(message);
         core.setFailed(message);
       }

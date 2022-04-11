@@ -1,23 +1,23 @@
-# Epiphyte Destroy Network Action
-This action destroys an Ethereum network via Epiphyte.
+# Epiphyte Destroy Chain Action
+This action destroys an Ethereum chain via Epiphyte.
 
 ## Inputs
-## `auth`
-**Required** The username:password from your Epiphyte account.
-## `id`
-The id of the Epiphyte network.
+## `token`
+**Required** The API token from your Epiphyte account.
+## `name`
+The name of the Epiphyte chain.
 
 ## Outputs
 None
 
 ## Example Usage
 
-This example uses the `EPIPHYTE_AUTH` value configured in repository secrets and
-the network id from a previous step output named `testnet`.
+This example uses the `EPIPHYTE_TOKEN` value configured in repository secrets and
+the chain name from a previous step output named `testnet`.
 
 ```yaml
-uses: epiphytelabs/action-network-destroy@v0.1
+uses: epiphytelabs/action-chain/destroy@main
 with:
-  auth: ${{ secrets.EPIPHYTE_AUTH }}
-  id: ${{ steps.testnet.outputs.id }}
+  auth: ${{ secrets.EPIPHYTE_TOKEN }}
+  id: ${{ steps.testnet.outputs.name }}
 ```

@@ -1,35 +1,32 @@
 // imports
 const core   = require('@actions/core');
-const github = require('@actions/github');
 const axios  = require('axios').default;
-const url    = require('url');
 
 // actual constants
 const EPIPHYTE_API_BASE = 'https://api.epiphyte.run';
-const NETWORKS_URL = '/chains';
+const OBJECT_URL = '/chains';
 
 async function main() {
   // parse input
-  const apiKey = core.getInput('api_key');
-  const id   = core.getInput('id');
+  const token = core.getInput('token');
+  const name  = core.getInput('name');
 
   // configure http agent
   const epiphyte = axios.create({
     baseURL: EPIPHYTE_API_BASE,
     headers: {
-      'Authorization': `Bearer ${apiKey}`
+      'Authorization': `Bearer ${token}`
     }
   });
 
   // attempt create network request
   try {
-    const url = NETWORKS_URL + '/' + id;
+    const url = OBJECT_URL + '/' + encodeURIComponent(name);
     const result = await epiphyte.delete(url);
 
     if (result.status == 200) {
       // set output on success
-      const data = result.data; 
-      core.info(`Chain ${id} destroyed`);
+      core.info(`Chain ${name} destroyed`);
     } else {
       // report http failure
       console.log(result.statusText);

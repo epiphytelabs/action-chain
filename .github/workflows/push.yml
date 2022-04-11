@@ -10,15 +10,12 @@ jobs:
         id:   testnet
         uses: ./create
         with:
-          accounts: 2 
-          api_key: ${{ secrets.EPIPHYTE_API_KEY }}
-          chain: 555
-          name: test1234
+          token: ${{ secrets.EPIPHYTE_TOKEN }}
+          name: test12345
         env:
           NODE_TLS_REJECT_UNAUTHORIZED: 0
       - name: Destroy test network
         uses: ./destroy
         with:
-          api_key: ${{ secrets.EPIPHYTE_API_KEY }}
-          name: test1234
-
+          token: ${{ secrets.EPIPHYTE_TOKEN }}
+          name: test12345
