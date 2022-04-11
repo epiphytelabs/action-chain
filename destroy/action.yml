@@ -1,0 +1,12 @@
+name: 'Epiphyte Destroy Network'
+description: 'Spin down ethereum network'
+inputs:
+  auth:
+    description: Epiphyte API key
+    required: true
+  id:
+    descrption: Network id
+    required: true
+runs:
+  using: 'node16'
+  main: 'index.js'

@@ -34,7 +34,7 @@ async function waitForTestNet(hostname) {
         return true;
       }
     } catch (error) {
-      const message = `Waiting for testnet (${error.response.status})`
+      const message = `Waiting for chain (${error.response.status})`
       console.log(message);
     }
     await waitFor(1000);
@@ -68,8 +68,8 @@ async function main() {
     if (result.status == 200) {
       // set output on success
       const data = result.data; 
-      core.info(`New epiphyte network created at ${data.hostname} with chain id ${data.chain} and ${data.accounts.length} accounts`);
-      core.info(`Waiting for testnet`);
+      core.info(`New epiphyte chain created at ${data.hostname} with id ${data.chain} and ${data.accounts.length} accounts`);
+      core.info(`Waiting for chain`);
       const testNetUp = await waitForTestNet(data.hostname);
       if (testNetUp) {
         core.info(`Testnet up`);

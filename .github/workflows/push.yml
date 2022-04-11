@@ -1,0 +1,24 @@
+name: Epiphyte Create Network Demo  
+on: [push]
+jobs:
+  Create-Epiphyte-Testnet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v3
+      - name: Create test network
+        id:   testnet
+        uses: ./create
+        with:
+          accounts: 2 
+          api_key: ${{ secrets.EPIPHYTE_API_KEY }}
+          chain: 555
+          name: test1234
+        env:
+          NODE_TLS_REJECT_UNAUTHORIZED: 0
+      - name: Destroy test network
+        uses: ./destroy
+        with:
+          api_key: ${{ secrets.EPIPHYTE_API_KEY }}
+          name: test1234
+
