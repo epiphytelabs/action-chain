@@ -1,35 +1,33 @@
-name: 'Epiphyte Create Network'
-description: 'Spin up new ethereum network'
+name: 'Epiphyte Create Chain'
+description: 'Spin up new ethereum chain'
 inputs:
-  api_key:
-    description: Epiphyte API key
+  token:
+    description: Epiphyte API token
     required: true
   accounts:
     descrption: Number of accounts to create
     required: false
     default: 5
-  chain:
-    description: chain id of network
+  id:
+    description: chain id of Ethereum chain
     required: false
   mnemonic:
     description: mnemonic seed to use for account generation
     required: false
   name:
-    description: used to identify network for further api calls
+    description: used to identify chain for further api calls
     required: false
 outputs:
   accounts:
     description: List of accounts and private keys
-  chain:
-    description: chain id of network
   hostname:
-    description: host name of network
+    description: host name of chain
   id:
-    description: unsure tbh
+    description: chain id of Ethereum chain
   mnemonic:
     description: mnemonic seed for created wallets
   name:
-    description: name of Epiphyte network
+    description: name of Epiphyte chain
 runs:
   using: 'node16'
   main: 'index.js'

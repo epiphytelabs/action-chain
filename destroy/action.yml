@@ -1,10 +1,10 @@
 name: 'Epiphyte Destroy Network'
 description: 'Spin down ethereum network'
 inputs:
-  auth:
-    description: Epiphyte API key
+  token:
+    description: Epiphyte API token
     required: true
-  id:
+  name:
     descrption: Network id
     required: true
 runs:
