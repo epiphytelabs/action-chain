@@ -1,4 +1,4 @@
-name: Epiphyte Create Network Demo  
+name: Epiphyte Create Chain Demo
 on: [push]
 jobs:
   Create-Epiphyte-Testnet:
