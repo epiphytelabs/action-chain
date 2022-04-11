@@ -67,7 +67,7 @@ async function main() {
     if (result.status == 200) {
       // set output on success
       const data = result.data; 
-      core.info(`New epiphyte chain created at ${data.hostname} with id ${data.chain} and ${data.accounts.length} accounts`);
+      core.info(`New epiphyte chain created at ${data.hostname} with ${data.accounts.length} accounts`);
       core.info(`Waiting for chain`);
       const testNetUp = await waitForTestNet(data.hostname);
       if (testNetUp) {
