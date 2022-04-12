@@ -1,5 +1,5 @@
 name: Epiphyte Create Chain Action Test
-on: [pull_request]
+on: [push]
 jobs:
   Create-Destroy-Epiphyte-Chain:
     runs-on: ubuntu-latest
