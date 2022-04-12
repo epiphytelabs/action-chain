@@ -1,5 +1,5 @@
 name: Epiphyte Create Chain Action Test
-on: [push]
+on: [pull_request]
 jobs:
   Create-Destroy-Epiphyte-Chain:
     runs-on: ubuntu-latest
@@ -15,8 +15,6 @@ jobs:
           id: 42
           mnemonic: mask flat gap evidence spare cigar drama latin oppose ill helmet crush
           name: ${{ github.sha }}
-        env:
-          NODE_TLS_REJECT_UNAUTHORIZED: 0
       - name: Test Output
         run: echo $ACCOUNTS_LENGTH $NAME 
         env: 

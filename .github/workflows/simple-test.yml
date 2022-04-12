@@ -11,8 +11,6 @@ jobs:
         uses: ./create
         with:
           token: ${{ secrets.EPIPHYTE_TOKEN }}
-        env:
-          NODE_TLS_REJECT_UNAUTHORIZED: 0
       - name: Destroy test network
         uses: ./destroy
         with:
