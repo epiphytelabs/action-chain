@@ -1,0 +1,29 @@
+name: Epiphyte Create Chain Action Test
+on: [pull_request]
+jobs:
+  Create-Destroy-Epiphyte-Chain:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v3
+      - name: Create test chain
+        id:   testnet
+        uses: ./create
+        with:
+          token: ${{ secrets.EPIPHYTE_TOKEN }}
+          accounts: 7
+          id: 42
+          mnemonic: mask flat gap evidence spare cigar drama latin oppose ill helmet crush
+          name: ${{ github.ref }}
+        env:
+          NODE_TLS_REJECT_UNAUTHORIZED: 0
+      - name: Test Output
+        run: echo $ACCOUNTS_LENGTH $NAME 
+        env: 
+          ACCOUNTS_LENGTH: ${{ fromJSON(steps.testnet.outputs.accounts).length }}
+          NAME: ${{ steps.testnet.outputs.name }}
+      - name: Destroy test chain by name
+        uses: ./destroy
+        with:
+          token: ${{ secrets.EPIPHYTE_TOKEN }}
+          name: ${{ github.ref }}

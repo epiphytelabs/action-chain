@@ -84,11 +84,13 @@ async function main() {
       }
     } else {
       // report http failure
+      console.log("HTTP failure");
       console.log(result.statusText);
       core.setFailed(result.statusText);
     }
   } catch (error) {
     // report generic failure
+    console.log("Generic failure");
     console.log(error.message);
     core.setFailed(error.message);
   }
