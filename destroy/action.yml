@@ -1,4 +1,4 @@
-name: 'Epiphyte Destroy Network'
+name: 'Epiphyte Destroy Chain'
 description: 'Spin down ethereum network'
 inputs:
   token:
