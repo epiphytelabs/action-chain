@@ -2,4 +2,6 @@
 
 ## Create
 
+See [./create](./create)
+
 ## Destroy
