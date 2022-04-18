@@ -13,18 +13,19 @@ jobs:
           token: ${{ secrets.EPIPHYTE_TOKEN }}
           accounts: 7
           id: 42
+          fork: mainnet@50000
           mnemonic: mask flat gap evidence spare cigar drama latin oppose ill helmet crush
           name: ${{ github.sha }}
       - name: Test Output
         run: | 
-          test "$ACCOUNT1" = "0x0247b86C323E18BaE51eDE7940C395A1B3259748"
-          test "$PRIVATE7" = "0x4331fad821a4f989513b4bc67b4f98ad45fb2a11f5b1bf900e57a05dddcbc252"
-          test "$NAME" = "$SHA"
+          cd create
+          node test.js
         env: 
-          ACCOUNT1: ${{ fromJSON(steps.testnet.outputs.accounts)[0].address }}
-          PRIVATE7: ${{ fromJSON(steps.testnet.outputs.accounts)[6].private }}
+          ACCOUNTS: ${{ steps.testnet.outputs.accounts }}
+          HOSTNAME: ${{ steps.testnet.outputs.hostname }}
           NAME: ${{ steps.testnet.outputs.name }}
           SHA: ${{ github.sha }}
+          ID: ${{ steps.testnet.outputs.id }}
       - name: Destroy test chain by name
         uses: ./destroy
         with:
