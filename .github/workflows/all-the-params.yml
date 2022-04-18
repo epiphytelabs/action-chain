@@ -16,10 +16,15 @@ jobs:
           mnemonic: mask flat gap evidence spare cigar drama latin oppose ill helmet crush
           name: ${{ github.sha }}
       - name: Test Output
-        run: echo $ACCOUNTS_LENGTH $NAME 
+        run: | 
+          test "$ACCOUNT1" = "0x0247b86C323E18BaE51eDE7940C395A1B3259748"
+          test "$PRIVATE7" = "0x4331fad821a4f989513b4bc67b4f98ad45fb2a11f5b1bf900e57a05dddcbc252"
+          test "$NAME" = "$SHA"
         env: 
-          ACCOUNTS_LENGTH: ${{ fromJSON(steps.testnet.outputs.accounts).length }}
+          ACCOUNT1: ${{ fromJSON(steps.testnet.outputs.accounts)[0].address }}
+          PRIVATE7: ${{ fromJSON(steps.testnet.outputs.accounts)[6].private }}
           NAME: ${{ steps.testnet.outputs.name }}
+          SHA: ${{ github.sha }}
       - name: Destroy test chain by name
         uses: ./destroy
         with:
