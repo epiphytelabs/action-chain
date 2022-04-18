@@ -23,4 +23,4 @@ with:
   token: ${{ secrets.EPIPHYTE_TOKEN }}
 ```
 
-See [destroy action](./create)
+See [destroy action](./destroy)
