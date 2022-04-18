@@ -11,7 +11,7 @@ async function main() {
     const idResponse = await testnet.post('/',
       {"jsonrpc":"2.0","method":"eth_chainId"}
     );
-    const chainId = parseInt(idResponse.data.result).toString();
+    const chainId = parseInt(idResponse.data.result);
 
     const blockNumberResponse = await testnet.post('/',
       {"jsonrpc":"2.0","method":"eth_blockNumber"}
@@ -26,8 +26,8 @@ async function main() {
     console.log("Address 1 matches");
     assert.equal(accounts[6].private, "0x4331fad821a4f989513b4bc67b4f98ad45fb2a11f5b1bf900e57a05dddcbc252");
     console.log("Private key 7 matches");
-    assert.equal(process.env.ID, chainId);
-    console.log("Live chain id equals " + chainId);
+    assert.equal(chainId, 42);
+    console.log("Chain id equals 42");
     assert.equal(process.env.NAME, process.env.SHA);
     console.log("Chain name matches");
 }
