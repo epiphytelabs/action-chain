@@ -8,6 +8,9 @@ inputs:
     descrption: Number of accounts to create
     required: false
     default: 5
+  fork:
+    description: specify `network` or `network@block` (e.g. `mainnet@100`)
+    required: false
   id:
     description: chain id of Ethereum chain
     required: false

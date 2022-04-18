@@ -46,6 +46,7 @@ async function main() {
   let postData = {
     accounts: core.getInput('accounts'),
     id: core.getInput('id'),
+    fork: core.getInput('fork'),
     mnemonic: core.getInput('mnemonic'),
     name: core.getInput('name')
   };
