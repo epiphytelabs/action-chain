@@ -23,7 +23,7 @@ inputs:
 outputs:
   accounts:
     description: List of accounts and private keys
-  hostname:
+  endpoint:
     description: host name of chain
   id:
     description: chain id of Ethereum chain

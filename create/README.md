@@ -31,8 +31,8 @@ For example:
   }
 ]
 ```
-## `hostname`
-The host name of the Epiphyte chain.
+## `endpoint`
+The RPC endpoint of the Epiphyte chain.
 ## `id`
 The chain id of the Ethereum chain.
 ## `mnemonic`

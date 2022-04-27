@@ -15,9 +15,11 @@ function waitFor(millSeconds) {
   });
 }
 
-async function waitForTestNet(hostname) {
+async function waitForTestNet(endpoint) {
+  console.log(endpoint);
+
   const testnet = axios.create({
-    baseURL: "https://" + hostname
+    baseURL: endpoint 
   })
 
   let attempts = 0;
@@ -68,13 +70,13 @@ async function main() {
     if (result.status == 200) {
       // set output on success
       const data = result.data; 
-      core.info(`New epiphyte chain created at ${data.hostname} with ${data.accounts.length} accounts`);
+      core.info(`New epiphyte chain created at ${data.endpoint} with ${data.accounts.length} accounts`);
       core.info(`Waiting for chain`);
-      const testNetUp = await waitForTestNet(data.hostname);
+      const testNetUp = await waitForTestNet(data.endpoint);
       if (testNetUp) {
         core.info(`Chain up`);
         core.setOutput('accounts', data.accounts);
-        core.setOutput('hostname', data.hostname);
+        core.setOutput('endpoint', data.endpoint);
         core.setOutput('id',       data.id);
         core.setOutput('mnemonic', data.mnemonic);
         core.setOutput('name',     data.name);
